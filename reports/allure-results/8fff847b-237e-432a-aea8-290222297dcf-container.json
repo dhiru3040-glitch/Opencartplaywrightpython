@@ -1,0 +1,1 @@
+{"uuid": "6c4adf1f-84cf-457e-97ee-df6e9b1434b9", "children": ["a60bd25b-c638-4ab1-88d4-644b8b175773"], "befores": [{"name": "_session_faker", "status": "passed", "start": 1791651379021, "stop": 1791651379154}], "afters": [{"name": "_session_faker::<lambda>", "start": 1791651407380}], "start": 1791651379021, "stop": 1791651407380}

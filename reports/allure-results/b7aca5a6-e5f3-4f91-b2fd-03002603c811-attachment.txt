@@ -1,0 +1,2 @@
+🎯 Starting browser: ['chromium']
+🎯 Headless mode: False (headed=True)

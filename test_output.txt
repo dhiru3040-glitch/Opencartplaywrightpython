@@ -1,0 +1,98 @@
+============================= test session starts =============================
+platform win32 -- Python 3.11.0, pytest-9.1.1, pluggy-1.6.0
+baseurl: https://tutorialsninja.com/demo/
+rootdir: D:\OpenCart_framework
+configfile: pytest.ini
+plugins: base-url-2.1.0, playwright-0.9.0, allure-pytest-2.16.2, Faker-40.43.0, html-4.2.0, metadata-3.1.1, order-1.5.0, rerunfailures-16.7, xdist-3.8.0
+collected 1 item
+
+tests\test_user_registration.py FE                                       [100%]
+
+=================================== ERRORS ====================================
+____________ ERROR at teardown of test_user_registration[chromium] ____________
+
+self = <allure_commons._allure.fixture object at 0x000001A6AC4AE9D0>, args = ()
+kwargs = {}
+
+    def __call__(self, *args, **kwargs):
+        self.parameters = func_parameters(self._fixture_function, *args, **kwargs)
+    
+        with self:
+>           return self._fixture_function(*args, **kwargs)
+                   ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+
+C:\Python311\Lib\site-packages\allure_commons\_allure.py:274: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+conftest.py:39: in manage_artifacts
+    print(f"\U0001f4ca Test '{test_name}' failed. Attaching forensic evidence to Allure...")
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <encodings.cp1252.IncrementalEncoder object at 0x000001A6A7A24110>
+input = "\U0001f4ca Test 'test_user_registration[chromium]' failed. Attaching forensic evidence to Allure..."
+final = False
+
+    def encode(self, input, final=False):
+>       return codecs.charmap_encode(input,self.errors,encoding_table)[0]
+               ^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^^
+E       UnicodeEncodeError: 'charmap' codec can't encode character '\U0001f4ca' in position 0: character maps to <undefined>
+
+C:\Python311\Lib\encodings\cp1252.py:19: UnicodeEncodeError
+-------------------------- Captured stdout teardown ---------------------------
+\U0001f4ca Test 'test_user_registration[chromium]' failed. Attaching forensic evidence to Allure...
+================================== FAILURES ===================================
+______________________ test_user_registration[chromium] _______________________
+
+page = <Page url='https://tutorialsninja.com/'>
+
+    def test_user_registration(page):
+        page.goto('/')
+        page.wait_for_load_state('domcontentloaded')
+        home_page=Homepage(page)
+        registration_page= RegistrationPage(page)
+    
+>       home_page.click_my_account()
+
+tests\test_user_registration.py:15: 
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+pages\homepage.py:22: in click_my_account
+    self.link_my_account.wait_for(state="visible", timeout=20000)
+C:\Users\Dhairyashil\AppData\Roaming\Python\Python311\site-packages\playwright\sync_api\_generated.py:20696: in wait_for
+    self._sync(
+C:\Users\Dhairyashil\AppData\Roaming\Python\Python311\site-packages\playwright\_impl\_locator.py:752: in wait_for
+    await self._frame.wait_for_selector(
+C:\Users\Dhairyashil\AppData\Roaming\Python\Python311\site-packages\playwright\_impl\_frame.py:395: in wait_for_selector
+    await self._channel.send(
+C:\Users\Dhairyashil\AppData\Roaming\Python\Python311\site-packages\playwright\_impl\_connection.py:76: in send
+    return await self._connection.wrap_api_call(
+_ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _ _
+
+self = <playwright._impl._connection.Connection object at 0x000001A6AC130D50>
+cb = <function Channel.send.<locals>.<lambda> at 0x000001A6AC178360>
+is_internal = False, title = None
+
+    async def wrap_api_call(
+        self, cb: Callable[[], Any], is_internal: bool = False, title: str = None
+    ) -> Any:
+        if self._api_zone.get():
+            return await cb()
+        task = asyncio.current_task(self._loop)
+        parsed_st = _attach_api_call_information(
+            getattr(task, "__pw_stack__", None) or _capture_stack_trace(),
+            is_internal,
+            title,
+        )
+        self._api_zone.set(parsed_st)
+        try:
+            return await cb()
+        except Exception as error:
+>           raise rewrite_error(error, f"{parsed_st['apiName']}: {error}") from None
+E           playwright._impl._errors.TimeoutError: Locator.wait_for: Timeout 20000ms exceeded.
+E           Call log:
+E             - waiting for get_by_title("My Account") to be visible
+
+C:\Users\Dhairyashil\AppData\Roaming\Python\Python311\site-packages\playwright\_impl\_connection.py:632: TimeoutError
+- Generated html report: file:///D:/OpenCart_framework/reports/myreport.html --
+=========================== short test summary info ===========================
+FAILED tests/test_user_registration.py::test_user_registration[chromium] - pl...
+ERROR tests/test_user_registration.py::test_user_registration[chromium] - Uni...
+========================= 1 failed, 1 error in 27.50s =========================
