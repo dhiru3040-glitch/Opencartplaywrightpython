@@ -5,7 +5,9 @@ from Utils.data_reader import read_excel_data
 import pytest
 excel_data = read_excel_data('testdata/logindata.xlsx', 'Sheet1')
 
-@pytest.mark.parametrize("testname, email, password, expected",excel_data)
+
+@pytest.mark.sanity
+@pytest.mark.parametrize("testname, email, password, expected", excel_data)
 def test_login_datadriven(page,testname, email, password, expected):
     page.goto('.')
     page.wait_for_load_state('domcontentloaded')
