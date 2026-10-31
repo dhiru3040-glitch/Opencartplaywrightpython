@@ -6,7 +6,6 @@ from pages.homepage import Homepage
 from pages.registration import RegistrationPage
 from Utils.random_data_util import RandomDataUtil
 
-@pytest.mark.sanity
 def test_user_registration(page):
     page.goto('.')
     page.wait_for_load_state('domcontentloaded')
@@ -33,4 +32,3 @@ def test_user_registration(page):
 
     confirmation_msg = registration_page.get_confirmation_msg()
     expect(confirmation_msg).to_have_text("Your Account Has Been Created!")
-    print("test case passed")
